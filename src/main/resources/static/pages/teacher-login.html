@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Faculty Portal Authentication — MERITIX</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<div class="auth-split-wrapper">
+  
+  <!-- Left Showcase Panel (Faculty Edition) -->
+  <aside class="auth-showcase-panel" style="background: radial-gradient(circle at 20% 30%, #151D33 0%, #0A121F 70%, #060B12 100%);">
+    <div>
+      <div class="showcase-brand-header">
+        <div class="brand-emblem" style="background: linear-gradient(135deg, #6366F1, #4338CA);box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">MERITIX</span>
+          <span class="brand-subtitle" style="color:var(--accent-indigo-light)">Faculty & Evaluation Portal</span>
+        </div>
+      </div>
+
+      <div class="showcase-content-body">
+        <div class="showcase-pill-badge" style="background-color:rgba(99,102,241,0.15);border-color:rgba(129,140,248,0.3);color:var(--accent-indigo-light)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Faculty Assessment Console</span>
+        </div>
+        <h1>Class Assessment & <br/><span style="color:var(--accent-indigo-light)">Cohort Intelligence.</span></h1>
+        <p>Log in to record student subject marks, analyze cohort grade distributions, export certified grade rosters, and resolve re-evaluation requests.</p>
+
+        <div class="showcase-feature-list">
+          <div class="showcase-feature-item">
+            <div class="showcase-check-icon" style="background-color:rgba(99,102,241,0.18);color:var(--accent-indigo-light)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Keyboard-Accelerated Marks Entry with Auto-Next</span>
+          </div>
+          <div class="showcase-feature-item">
+            <div class="showcase-check-icon" style="background-color:rgba(99,102,241,0.18);color:var(--accent-indigo-light)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Instant Pass/Fail & Grade Distribution Analytics</span>
+          </div>
+          <div class="showcase-feature-item">
+            <div class="showcase-check-icon" style="background-color:rgba(99,102,241,0.18);color:var(--accent-indigo-light)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Exportable Grade Rosters & Re-evaluation Queue</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mini Faculty Showcase Metric -->
+    <div class="showcase-preview-card" style="border-color:rgba(129,140,248,0.25);">
+      <div class="preview-card-header">
+        <span class="preview-chip" style="color:var(--accent-indigo-light)">
+          <span class="preview-chip-dot" style="background-color:var(--accent-indigo);box-shadow:0 0 6px var(--accent-indigo)"></span>
+          <span>EVALUATION STATUS</span>
+        </span>
+        <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600;">Active Roster</span>
+      </div>
+      <div class="preview-metrics-row">
+        <div class="preview-stat">
+          <span class="preview-stat-val" style="color:var(--accent-indigo-light);">88.4%</span>
+          <span class="preview-stat-lbl">Class Average</span>
+        </div>
+        <div class="preview-stat">
+          <span class="preview-stat-val">100%</span>
+          <span class="preview-stat-lbl">Pass Rate</span>
+        </div>
+        <div class="preview-stat">
+          <span class="preview-stat-val">Verified</span>
+          <span class="preview-stat-lbl">Grade Status</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Right Authentication Panel -->
+  <main class="auth-form-panel">
+    <div class="auth-form-container">
+      
+      <!-- Mobile Brand Header -->
+      <div class="auth-mobile-header">
+        <div class="brand-emblem" style="background: linear-gradient(135deg, #6366F1, #4338CA);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">MERITIX</span>
+          <span class="brand-subtitle" style="color:var(--accent-indigo-light);">Faculty Portal</span>
+        </div>
+      </div>
+
+      <a href="../index.html" class="auth-home-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+        <span>Return to Home Gateway</span>
+      </a>
+
+      <div class="auth-header-wrap">
+        <h2>Faculty Authentication</h2>
+        <p>Access your grading console or register a new faculty account</p>
+      </div>
+
+      <!-- Role Switcher -->
+      <div class="role-segmented-control">
+        <button class="role-tab-btn" type="button" onclick="window.location.href='student-login.html'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span>Student Portal</span>
+        </button>
+        <button class="role-tab-btn active teacher-active" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Faculty Portal</span>
+        </button>
+      </div>
+
+      <!-- Mode Switch: Login vs Sign Up -->
+      <div class="auth-mode-tabs">
+        <button class="mode-tab-link active" id="tabLogin" onclick="switchMode('login')">Sign In</button>
+        <button class="mode-tab-link" id="tabSignup" onclick="switchMode('signup')">Register Faculty Account</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="formLogin" class="auth-form-block active" onsubmit="handleLogin(event)">
+        <div class="form-group-field">
+          <label class="form-label">Faculty Login ID</label>
+          <div class="form-input-container">
+            <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input type="text" id="loginId" class="form-control-input" placeholder="e.g. marcus.v" required autocomplete="username" />
+          </div>
+          <div class="form-helper-text">Enter your institutional faculty identifier</div>
+        </div>
+
+        <div class="form-group-field">
+          <label class="form-label">Password</label>
+          <div class="form-input-container">
+            <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="loginPassword" class="form-control-input" placeholder="••••••••" required autocomplete="current-password" />
+            <button type="button" class="password-toggle-btn" onclick="togglePassVisibility('loginPassword', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="btnSubmitLogin" class="btn btn-primary btn-block" style="padding:13px;background-color:#4F46E5;color:#FFFFFF;box-shadow:0 2px 10px rgba(79,70,229,0.3);">
+          <span>Authenticate & Open Faculty Console</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <!-- SIGN UP FORM -->
+      <form id="formSignup" class="auth-form-block" onsubmit="handleSignup(event)">
+        <div class="form-group-field">
+          <label class="form-label">Faculty Full Name & Title</label>
+          <div class="form-input-container">
+            <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input type="text" id="signupName" class="form-control-input" placeholder="e.g. Dr. Robert Langdon" required />
+          </div>
+        </div>
+
+        <div class="form-group-field">
+          <label class="form-label">Course / Subject Taught</label>
+          <div class="form-input-container">
+            <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <input type="text" id="signupSubject" class="form-control-input" placeholder="e.g. Software Engineering & Architecture" required />
+          </div>
+          <div class="form-helper-text">You will evaluate and assign marks for this course</div>
+        </div>
+
+        <div class="form-group-field">
+          <label class="form-label">Choose a Login ID</label>
+          <div class="form-input-container">
+            <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
+            <input type="text" id="signupLoginId" class="form-control-input" placeholder="e.g. robert.l" required />
+          </div>
+        </div>
+
+        <div class="form-group-field">
+          <label class="form-label">Password</label>
+          <div class="form-input-container">
+            <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="signupPassword" class="form-control-input" placeholder="Minimum 4 characters" minlength="4" required />
+            <button type="button" class="password-toggle-btn" onclick="togglePassVisibility('signupPassword', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="btnSubmitSignup" class="btn btn-primary btn-block" style="padding:13px;background-color:#4F46E5;color:#FFFFFF;">
+          <span>Register Faculty Profile</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <!-- Quick Demo Account Fill -->
+      <div class="demo-accounts-box">
+        <div class="demo-accounts-title">⚡ 1-Click Faculty Demo Login</div>
+        <div class="demo-btns-row">
+          <button type="button" class="btn-demo-pill" onclick="autoFill('marcus.v', 'password123')">
+            Dr. Marcus Vance (Databases)
+          </button>
+          <button type="button" class="btn-demo-pill" onclick="autoFill('alan.t', 'password123')">
+            Prof. Alan Turing (Algorithms)
+          </button>
+          <button type="button" class="btn-demo-pill" onclick="autoFill('sarah.j', 'password123')">
+            Dr. Sarah Jenkins (Applied Math)
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script>
+  // Check if session already active
+  const session = Session.get();
+  if (session && session.role === 'teacher') {
+    window.location.href = 'teacher-dashboard.html';
+  }
+
+  function switchMode(mode) {
+    document.getElementById('tabLogin').classList.toggle('active', mode === 'login');
+    document.getElementById('tabSignup').classList.toggle('active', mode === 'signup');
+    document.getElementById('formLogin').classList.toggle('active', mode === 'login');
+    document.getElementById('formSignup').classList.toggle('active', mode === 'signup');
+  }
+
+  function togglePassVisibility(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const isPass = input.type === 'password';
+    input.type = isPass ? 'text' : 'password';
+    btn.style.color = isPass ? 'var(--accent-indigo-light)' : 'var(--text-muted)';
+  }
+
+  function autoFill(u, p) {
+    switchMode('login');
+    document.getElementById('loginId').value = u;
+    document.getElementById('loginPassword').value = p;
+    showToast(`Autofilled credentials for ${u}`, 'info');
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    const loginId = document.getElementById('loginId').value.trim();
+    const password = document.getElementById('loginPassword').value;
+
+    if (!validateRequired({ 'Login ID': loginId, 'Password': password })) return;
+
+    const btn = document.getElementById('btnSubmitLogin');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = `<span>Authenticating...</span>`;
+    btn.disabled = true;
+
+    const res = await TeacherAPI.login(loginId, password);
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+
+    if (!res.success) {
+      showToast(res.message, 'error');
+      return;
+    }
+
+    Session.set('teacher', res.data);
+    showToast(`Welcome back, ${res.data.name}! Opening faculty workspace...`, 'success');
+    setTimeout(() => {
+      window.location.href = 'teacher-dashboard.html';
+    }, 700);
+  }
+
+  async function handleSignup(e) {
+    e.preventDefault();
+    const name = document.getElementById('signupName').value.trim();
+    const subject = document.getElementById('signupSubject').value.trim();
+    const loginId = document.getElementById('signupLoginId').value.trim();
+    const password = document.getElementById('signupPassword').value;
+
+    if (!validateRequired({ 'Name': name, 'Subject': subject, 'Login ID': loginId, 'Password': password })) return;
+
+    const btn = document.getElementById('btnSubmitSignup');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = `<span>Registering Faculty Member...</span>`;
+    btn.disabled = true;
+
+    const res = await TeacherAPI.signup(name, subject, loginId, password);
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+
+    if (!res.success) {
+      showToast(res.message, 'error');
+      return;
+    }
+
+    Session.set('teacher', res.data);
+    showToast(`Faculty account created! Welcome, ${res.data.name}!`, 'success');
+    setTimeout(() => {
+      window.location.href = 'teacher-dashboard.html';
+    }, 800);
+  }
+</script>
+
+</body>
+</html>

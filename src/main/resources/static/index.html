@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MERITIX — Next-Generation Academic Assessment & Performance Portal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body style="background: radial-gradient(circle at 50% 10%, #162032 0%, #0D131F 60%, #090D14 100%);">
+
+  <!-- Top Navigation -->
+  <header class="landing-navbar">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="brand-emblem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">MERITIX</span>
+        <span class="brand-subtitle">Academic Intelligence Platform</span>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="term-pill">
+        <span class="term-pill-dot"></span>
+        <span>Spring 2026 Session</span>
+      </div>
+      <a href="pages/student-login.html" class="btn btn-primary btn-sm">
+        <span>Enter Portal</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="landing-hero">
+    <div class="landing-hero-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"/></svg>
+      <span>Next-Generation Academic Assessment & Performance Portal</span>
+    </div>
+    <h1>Academic Assessment & <br/><span class="gradient-mint">Performance Intelligence</span></h1>
+    <p>A unified academic management workspace connecting students and faculty. Experience real-time GPA tracking, subject-level performance radars, and streamlined marks evaluation.</p>
+  </section>
+
+  <!-- Portal Gateway Cards -->
+  <main class="portal-selection-grid">
+    <!-- Student Portal Card -->
+    <a href="pages/student-login.html" class="portal-entry-card">
+      <div>
+        <div class="portal-card-icon-box student-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </div>
+        <div class="portal-card-content">
+          <h3>Student Workspace</h3>
+          <p>Access your personalized examination results, cumulative GPA breakdown, interactive performance radar, and generate official printable transcripts.</p>
+        </div>
+      </div>
+      <div class="portal-card-action">
+        <span>Enter Student Portal</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+    </a>
+
+    <!-- Faculty Portal Card -->
+    <a href="pages/teacher-login.html" class="portal-entry-card teacher-card">
+      <div>
+        <div class="portal-card-icon-box teacher-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="portal-card-content">
+          <h3>Faculty Workspace</h3>
+          <p>Evaluate student cohorts with intuitive keyboard-accelerated marks entry, monitor class distributions, export grade rosters, and manage review requests.</p>
+        </div>
+      </div>
+      <div class="portal-card-action">
+        <span>Enter Faculty Portal</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+    </a>
+  </main>
+
+  <!-- Live Demonstration Bar -->
+  <div style="max-width:860px;margin:0 auto 60px;padding:0 24px;">
+    <div class="demo-accounts-box">
+      <div class="demo-accounts-title">⚡ Quick Demonstration Access (Pre-Configured Credentials)</div>
+      <div class="demo-btns-row">
+        <button class="btn-demo-pill" onclick="directLogin('student', 'alex.w', 'password123')">
+          🎒 Student Demo (Alexander Wright • High Honors)
+        </button>
+        <button class="btn-demo-pill" onclick="directLogin('student', 'emily.c', 'password123')">
+          🎒 Student Demo (Emily Chen • Dean's List)
+        </button>
+        <button class="btn-demo-pill" onclick="directLogin('teacher', 'marcus.v', 'password123')">
+          👩‍🏫 Faculty Demo (Dr. Marcus Vance • Databases)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    async function directLogin(role, loginId, password) {
+      showToast(`Signing in as demo ${role}...`, 'info');
+      const api = role === 'teacher' ? TeacherAPI : StudentAPI;
+      const res = await api.login(loginId, password);
+      if (res.success) {
+        Session.set(role, res.data);
+        showToast(`Signed in! Redirecting to ${role} dashboard...`, 'success');
+        setTimeout(() => {
+          window.location.href = role === 'teacher' ? 'pages/teacher-dashboard.html' : 'pages/student-dashboard.html';
+        }, 600);
+      } else {
+        // If data isn't seeded yet, navigate to login page
+        window.location.href = role === 'teacher' ? 'pages/teacher-login.html' : 'pages/student-login.html';
+      }
+    }
+  </script>
+</body>
+</html>

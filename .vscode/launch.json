@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot - StudentResultManagementApplication",
+      "request": "launch",
+      "mainClass": "com.srm.StudentResultManagementApplication",
+      "projectName": "student-result-management"
+    }
+  ]
+}

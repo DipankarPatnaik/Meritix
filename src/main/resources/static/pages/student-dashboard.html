@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Student Academic Workspace — MERITIX</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- Local Chart.js bundle -->
+  <script src="../js/chart.min.js"></script>
+  <!-- Local html2pdf bundle for direct PDF download -->
+  <script src="../js/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- Sidebar Navigation -->
+  <aside class="app-sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="sidebar-brand-link">
+        <div class="brand-emblem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">MERITIX</span>
+          <span class="brand-subtitle">Student Portal</span>
+        </div>
+      </a>
+      <button class="sidebar-close-btn" onclick="closeMobileSidebar()" aria-label="Close sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Academic Records</div>
+      <button class="nav-item active" onclick="switchTab('overview', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Overview & Analytics</span>
+      </button>
+
+      <button class="nav-item" onclick="switchTab('results', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span>Subject Results</span>
+      </button>
+
+      <button class="nav-item" onclick="openTranscriptModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span>Official Transcript</span>
+      </button>
+
+      <div class="nav-section-title">Services & Inquiries</div>
+      <button class="nav-item" onclick="openRevalModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Request Re-evaluation</span>
+      </button>
+
+      <button class="nav-item" onclick="openGradingPolicyModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>Grading Regulations</span>
+      </button>
+
+      <div class="nav-section-title">Personal Account</div>
+      <button class="nav-item" onclick="switchTab('profile', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Student Profile</span>
+      </button>
+    </nav>
+
+    <!-- Sidebar Bottom User Card -->
+    <div class="sidebar-footer">
+      <div class="user-profile-widget">
+        <div class="user-meta-left">
+          <div class="user-avatar" id="sidebarAvatar">ST</div>
+          <div class="user-info-text">
+            <div class="user-display-name" id="sidebarName">Student Name</div>
+            <div class="user-role-badge">
+              <span class="badge-tag tag-mint" style="padding:1px 6px;font-size:0.65rem;">Student</span>
+            </div>
+          </div>
+        </div>
+        <button class="btn-icon-logout" onclick="confirmLogout()" title="Log out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile Drawer Backdrop -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeMobileSidebar()"></div>
+
+  <!-- Main Viewport -->
+  <main class="app-main">
+
+    <!-- Topbar -->
+    <header class="app-topbar">
+      <div class="topbar-left">
+        <button class="mobile-nav-toggle" onclick="toggleMobileSidebar()" aria-label="Toggle navigation menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="breadcrumbs">
+          <span>Portal</span>
+          <span>/</span>
+          <span>Student</span>
+          <span>/</span>
+          <span class="current" id="breadcrumbSection">Overview & Analytics</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="term-pill">
+          <span class="term-pill-dot"></span>
+          <span>Term: Spring 2026</span>
+        </div>
+        <button class="btn btn-outline-mint btn-sm" onclick="openTranscriptModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Download Marksheet (PDF)</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Page Content Container -->
+    <div class="content-wrapper">
+
+      <!-- ========================================================
+           TAB 1: OVERVIEW & ANALYTICS
+           ======================================================== -->
+      <section id="panelOverview" class="tab-content-panel active">
+        
+        <!-- Executive Student Header Banner -->
+        <div class="executive-banner">
+          <div class="banner-left">
+            <div class="banner-avatar-lg" id="bannerAvatar">AW</div>
+            <div class="banner-meta">
+              <h2 id="bannerGreeting">Welcome, Alexander Wright</h2>
+              <p id="bannerSub">Bachelor of Technology • Computer Science & Engineering</p>
+              <div class="banner-pills-row">
+                <span class="badge-tag tag-mint" id="bannerRollBadge">Roll: CS-2026-042</span>
+                <span class="badge-tag" id="bannerLoginBadge">Login: alex.w</span>
+                <span class="badge-tag tag-teal">Semester VI</span>
+                <span class="badge-tag tag-mint">Status: Enrolled</span>
+              </div>
+            </div>
+          </div>
+          <div class="banner-right-stats">
+            <div class="banner-stat-col">
+              <div class="stat-val highlight" id="bannerCGPA">—</div>
+              <div class="stat-lbl">Cumulative GPA (4.0 Scale)</div>
+            </div>
+            <div class="banner-stat-col">
+              <div class="stat-val" id="bannerPercentage">—</div>
+              <div class="stat-lbl">Aggregate Score</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 KPI Stat Metric Cards (with count-up counters) -->
+        <div class="stats-grid">
+          <div class="stat-metric-card">
+            <div class="metric-icon-box mint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-number" id="metricGPA">—</span>
+              <span class="metric-label">Semester GPA (10-Pt Scale)</span>
+            </div>
+          </div>
+
+          <div class="stat-metric-card">
+            <div class="metric-icon-box teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-number" id="metricSubjects">—</span>
+              <span class="metric-label">Total Enrolled Courses</span>
+            </div>
+          </div>
+
+          <div class="stat-metric-card">
+            <div class="metric-icon-box amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-number" id="metricGraded">—</span>
+              <span class="metric-label">Evaluations Completed</span>
+            </div>
+          </div>
+
+          <div class="stat-metric-card">
+            <div class="metric-icon-box indigo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-number" style="font-size:1.1rem;margin-top:4px;" id="metricStanding">—</span>
+              <span class="metric-label">Academic Classification</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Row: Chart + Progress Target -->
+        <div class="analytics-grid-row">
+          <!-- Chart Card -->
+          <div class="surface-card">
+            <div class="card-header-bar">
+              <div class="card-header-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                <span>Course Performance Benchmark</span>
+              </div>
+              <span class="badge-tag tag-mint">Live Calculation</span>
+            </div>
+            <div class="card-body-content">
+              <div class="chart-viewport">
+                <canvas id="studentMarksChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Target Progress Card -->
+          <div class="surface-card progress-target-card">
+            <div class="card-header-bar">
+              <div class="card-header-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+                <span>Academic Honors Target</span>
+              </div>
+            </div>
+            <div class="card-body-content" style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div class="target-header-meta">
+                  <span style="font-size:0.85rem;color:var(--text-secondary);font-weight:600;">Dean's Honor List Threshold</span>
+                  <span class="target-pct" id="targetPercentageLabel">0%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-bar-fill" id="targetProgressBar" style="width: 0%;"></div>
+                </div>
+                <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.5;" id="targetAdviceText">
+                  Calculating your current standing relative to the 85.0% First Class with Distinction criteria.
+                </p>
+              </div>
+
+              <div class="target-details-list">
+                <div class="target-detail-row">
+                  <span class="text-secondary">Earned Credits</span>
+                  <span class="fw-700 font-mono" id="txtEarnedCredits">20 / 20 Credits</span>
+                </div>
+                <div class="target-detail-row">
+                  <span class="text-secondary">Distinction Status</span>
+                  <span class="badge-tag tag-mint" id="txtDistinctionStatus">Qualified</span>
+                </div>
+                <div class="target-detail-row">
+                  <span class="text-secondary">Graduation Standing</span>
+                  <span class="text-mint fw-700" id="txtStanding">Distinction</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subject Overview Summary Table -->
+        <div class="surface-card">
+          <div class="card-header-bar">
+            <div class="card-header-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Current Term Subject Marks</span>
+            </div>
+            <div id="overviewResultPill"></div>
+          </div>
+          <div class="table-responsive">
+            <table class="academic-table">
+              <thead>
+                <tr>
+                  <th>Course / Subject</th>
+                  <th>Faculty Instructor</th>
+                  <th>Max Score</th>
+                  <th>Scored Marks</th>
+                  <th>Grade</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="overviewTableBody">
+                <tr><td colspan="6" style="text-align:center;padding:30px;"><div class="empty-state-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>Retrieving records...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================================
+           TAB 2: DETAILED RESULTS & BREAKDOWN
+           ======================================================== -->
+      <section id="panelResults" class="tab-content-panel">
+        <div class="section-toolbar">
+          <div class="section-title-wrap">
+            <h2>Subject Examination Results</h2>
+            <p>Comprehensive subject breakdown with grade points and performance ratings</p>
+          </div>
+          <div class="toolbar-actions">
+            <button class="btn btn-outline-mint btn-sm" onclick="openTranscriptModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download Marksheet (PDF)</span>
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="openRevalModal()">
+              <span>Request Review</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="surface-card">
+          <div class="table-responsive">
+            <table class="academic-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Subject & Code</th>
+                  <th>Faculty Member</th>
+                  <th>Credits</th>
+                  <th>Score / 100</th>
+                  <th>Grade Point</th>
+                  <th>Letter Grade</th>
+                  <th>Evaluation Status</th>
+                </tr>
+              </thead>
+              <tbody id="detailedTableBody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           TAB 3: STUDENT PROFILE
+           ======================================================== -->
+      <section id="panelProfile" class="tab-content-panel">
+        <div class="section-toolbar">
+          <div class="section-title-wrap">
+            <h2>Student Academic Profile</h2>
+            <p>Institutional record, department credentials and account details</p>
+          </div>
+        </div>
+
+        <div class="surface-card" style="margin-bottom:24px;">
+          <div class="card-body-content">
+            <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+              <div class="banner-avatar-lg" id="profileAvatarLg" style="width:84px;height:84px;font-size:2.2rem;">AW</div>
+              <div>
+                <h2 id="profFullName" style="font-size:1.6rem;color:#FFFFFF;">Alexander Wright</h2>
+                <p style="color:var(--text-secondary);font-size:0.95rem;margin-top:4px;">Department of Computer Science & Engineering • Class of 2026</p>
+                <div class="banner-pills-row" style="margin-top:10px;">
+                  <span class="badge-tag tag-mint" id="profRollTag">Roll: CS-2026-042</span>
+                  <span class="badge-tag" id="profLoginTag">Login: alex.w</span>
+                  <span class="badge-tag" style="background-color:rgba(16,185,129,0.15);color:var(--accent-mint-light);">Status: Active & Enrolled</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="surface-card">
+          <div class="card-header-bar">
+            <div class="card-header-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>Institutional Enrollment Details</span>
+            </div>
+          </div>
+          <div class="card-body-content">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;">
+              <div>
+                <div class="form-label">Full Student Name</div>
+                <div class="fw-700" id="profNameValue" style="color:var(--text-primary);font-size:1.05rem;">—</div>
+              </div>
+              <div>
+                <div class="form-label">Official Roll Number</div>
+                <div class="fw-700 font-mono" id="profRollValue" style="color:var(--accent-mint-light);font-size:1.05rem;">—</div>
+              </div>
+              <div>
+                <div class="form-label">Portal Login ID</div>
+                <div class="fw-700 font-mono" id="profLoginValue" style="color:var(--text-primary);font-size:1.05rem;">—</div>
+              </div>
+              <div>
+                <div class="form-label">Academic Program</div>
+                <div class="fw-700" style="color:var(--text-primary);font-size:1.05rem;">B.Tech in Computer Science</div>
+              </div>
+              <div>
+                <div class="form-label">Current Academic Session</div>
+                <div class="fw-700" style="color:var(--text-primary);font-size:1.05rem;">Spring 2026 (Semester VI)</div>
+              </div>
+              <div>
+                <div class="form-label">Member Since</div>
+                <div class="fw-700" id="profJoinedValue" style="color:var(--text-primary);font-size:1.05rem;">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- ============================================================
+     MODAL 1: OFFICIAL PRINTABLE TRANSCRIPT
+     ============================================================ -->
+<div id="transcriptModal" class="modal-backdrop">
+  <div class="modal-card" style="max-width:780px;">
+    <div class="modal-header no-print">
+      <h3>Official Academic Grade Sheet Preview</h3>
+      <button class="modal-close" onclick="closeTranscriptModal()">&times;</button>
+    </div>
+    <div class="modal-body" style="background-color:#F1F5F9;padding:24px;">
+      
+      <!-- Printable Sheet -->
+      <div class="transcript-preview-sheet" id="printableSheet">
+        <div class="transcript-header">
+          <div>
+            <div class="transcript-inst-title">MERITIX UNIVERSITY OF TECHNOLOGY</div>
+            <div class="transcript-inst-sub">Office of the University Registrar • Examination Controller</div>
+            <div style="font-size:0.75rem;color:#64748B;margin-top:2px;">ACCREDITED BY UGC & NAAC • SPRING 2026 EXAMINATION</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-weight:800;color:#0F766E;font-size:1rem;">STATEMENT OF MARKS</div>
+            <div style="font-size:0.75rem;color:#64748B;" id="printDateStamp">Date: 14-Nov-2026</div>
+          </div>
+        </div>
+
+        <div class="transcript-meta-grid">
+          <div><strong>Student Name:</strong> <span id="tsName">Alexander Wright</span></div>
+          <div><strong>Roll Number:</strong> <span id="tsRoll">CS-2026-042</span></div>
+          <div><strong>Degree Program:</strong> B.Tech (Computer Science)</div>
+          <div><strong>Academic Term:</strong> Semester VI (Spring 2026)</div>
+        </div>
+
+        <table class="transcript-table">
+          <thead>
+            <tr>
+              <th>Course Title</th>
+              <th>Instructor</th>
+              <th>Max Marks</th>
+              <th>Obtained Marks</th>
+              <th>Grade</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tsTableBody">
+          </tbody>
+        </table>
+
+        <div class="transcript-summary-box">
+          <div class="transcript-summary-stat">
+            <div class="val" id="tsCGPA">3.88</div>
+            <div class="lbl">Cumulative GPA</div>
+          </div>
+          <div class="transcript-summary-stat">
+            <div class="val" id="tsPercentage">91.4%</div>
+            <div class="lbl">Aggregate Percentage</div>
+          </div>
+          <div class="transcript-summary-stat">
+            <div class="val" id="tsResult">PASS</div>
+            <div class="lbl">Final Outcome</div>
+          </div>
+          <div class="transcript-summary-stat">
+            <div class="val" id="tsStanding">Distinction</div>
+            <div class="lbl">Classification</div>
+          </div>
+        </div>
+
+        <div class="transcript-footer-signatures">
+          <div>Verified By: Head of Academic Registry</div>
+          <div style="text-align:center;">OFFICIAL SYSTEM-GENERATED RECORD</div>
+          <div>Controller of Examinations</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer no-print">
+      <button class="btn btn-secondary" onclick="closeTranscriptModal()">Close</button>
+      <button class="btn btn-secondary" onclick="window.print()" title="Print via browser dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span>Print</span>
+      </button>
+      <button class="btn btn-primary" id="btnDownloadPDF" onclick="downloadMarksheetPDF()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download Official PDF</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 2: REQUEST RE-EVALUATION
+     ============================================================ -->
+<div id="revalModal" class="modal-backdrop">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Request Paper Re-evaluation / Review</h3>
+      <button class="modal-close" onclick="closeRevalModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:18px;">
+        Submit a formal re-assessment request to your faculty instructor. Requests are logged and reviewed under standard university examination policies.
+      </p>
+
+      <div class="form-group-field">
+        <label class="form-label">Select Course for Review</label>
+        <select id="revalCourseSelect" class="form-control-input" style="padding-left:14px;">
+          <option value="">-- Choose graded course --</option>
+        </select>
+      </div>
+
+      <div class="form-group-field">
+        <label class="form-label">Reason or Justification</label>
+        <textarea id="revalReason" class="form-control-input" style="padding:12px;height:90px;resize:vertical;" placeholder="Specify questions or topics you are requesting review for..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeRevalModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitRevalRequest()">Submit Request</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 3: GRADING REGULATIONS
+     ============================================================ -->
+<div id="gradingPolicyModal" class="modal-backdrop">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Academic Grading System Regulations</h3>
+      <button class="modal-close" onclick="closeGradingPolicyModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:16px;">
+        Meritix implements a 10-Point Relative Grading System converted to a 4.0 Standard Scale for international transcript comparability.
+      </p>
+      <table class="academic-table" style="font-size:0.85rem;">
+        <thead>
+          <tr>
+            <th>Score Range</th>
+            <th>Grade</th>
+            <th>Grade Point</th>
+            <th>Classification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>90% – 100%</td><td><span class="status-badge badge-distinction">A+</span></td><td>10.0</td><td>Outstanding</td></tr>
+          <tr><td>80% – 89%</td><td><span class="status-badge badge-distinction">A</span></td><td>9.0</td><td>Excellent</td></tr>
+          <tr><td>70% – 79%</td><td><span class="status-badge badge-success">B</span></td><td>8.0</td><td>Very Good</td></tr>
+          <tr><td>60% – 69%</td><td><span class="status-badge badge-warning">C</span></td><td>7.0</td><td>Good</td></tr>
+          <tr><td>50% – 59%</td><td><span class="status-badge badge-pass">D</span></td><td>6.0</td><td>Above Average</td></tr>
+          <tr><td>33% – 49%</td><td><span class="status-badge badge-pass">E</span></td><td>4.0</td><td>Pass</td></tr>
+          <tr><td>Below 33%</td><td><span class="status-badge badge-fail">F</span></td><td>0.0</td><td>Fail / Re-appear</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="closeGradingPolicyModal()">Understood</button>
+    </div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script>
+  // ── Authentication Check ────────────────────────────────────
+  const session = Session.get();
+  if (!session || session.role !== 'student') {
+    window.location.href = 'student-login.html';
+  }
+  const student = session.user;
+
+  // Render initial user metadata
+  const userInitials = initials(student.name);
+  document.getElementById('sidebarAvatar').textContent = userInitials;
+  document.getElementById('sidebarName').textContent = student.name;
+  document.getElementById('bannerAvatar').textContent = userInitials;
+  document.getElementById('bannerGreeting').textContent = `Welcome back, ${student.name}`;
+  document.getElementById('bannerRollBadge').textContent = `Roll: ${student.rollNumber}`;
+  document.getElementById('bannerLoginBadge').textContent = `Login: ${student.loginId}`;
+
+  // Profile Section Data
+  document.getElementById('profileAvatarLg').textContent = userInitials;
+  document.getElementById('profFullName').textContent = student.name;
+  document.getElementById('profRollTag').textContent = `Roll: ${student.rollNumber}`;
+  document.getElementById('profLoginTag').textContent = `Login: ${student.loginId}`;
+  document.getElementById('profNameValue').textContent = student.name;
+  document.getElementById('profRollValue').textContent = student.rollNumber;
+  document.getElementById('profLoginValue').textContent = student.loginId;
+  document.getElementById('profJoinedValue').textContent = student.createdAt 
+    ? new Date(student.createdAt).toLocaleDateString('en-IN', { day:'2-digit', month:'long', year:'numeric' }) 
+    : 'Spring Session 2026';
+
+  let currentResults = [];
+  let performanceChart = null;
+
+  // ── Data Fetching & Rendering ────────────────────────────────
+  async function loadStudentData() {
+    const res = await StudentAPI.getResults(student.id);
+    if (!res.success) {
+      showToast(res.message, 'error');
+      return;
+    }
+
+    currentResults = res.data || [];
+    renderDashboard(currentResults);
+  }
+
+  function renderDashboard(results) {
+    const totalSubjects = results.length;
+    const graded = results.filter(r => r.marks !== null && r.marks !== undefined);
+    const gradedCount = graded.length;
+    const scores = graded.map(r => Number(r.marks));
+
+    const avgScore = scores.length 
+      ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1) 
+      : null;
+
+    const cgpa4 = calculateCGPA(scores, 4.0);
+    const gpa10 = calculateCGPA(scores, 10.0);
+    const classification = academicClassification(avgScore);
+    const hasFailedAny = scores.some(s => s < 33);
+    const overallPassed = (gradedCount > 0 && !hasFailedAny && avgScore >= 33);
+
+    // Animated Counters
+    animateCounter('bannerCGPA', cgpa4 !== null ? cgpa4 : 0, 1000, '', 2);
+    animateCounter('bannerPercentage', avgScore !== null ? avgScore : 0, 1000, '%', 1);
+    animateCounter('metricGPA', gpa10 !== null ? gpa10 : 0, 1000, ' / 10', 2);
+    animateCounter('metricSubjects', totalSubjects, 800);
+    animateCounter('metricGraded', gradedCount, 800, ` / ${totalSubjects}`);
+
+    document.getElementById('metricStanding').textContent = (gradedCount === 0) 
+      ? 'Awaited' 
+      : hasFailedAny 
+        ? 'Remedial' 
+        : classification.split(' ')[0] + ' Class';
+
+    // Target Progress Indicator
+    const targetPct = avgScore !== null ? Math.min(Math.round((avgScore / 85) * 100), 100) : 0;
+    document.getElementById('targetPercentageLabel').textContent = targetPct + '%';
+    document.getElementById('targetProgressBar').style.width = targetPct + '%';
+    document.getElementById('txtStanding').textContent = classification;
+    document.getElementById('txtDistinctionStatus').textContent = (avgScore !== null && avgScore >= 85) ? 'Achieved 🏆' : 'In Progress';
+
+    // Overview Result Pill
+    const pill = document.getElementById('overviewResultPill');
+    if (gradedCount === 0) {
+      pill.innerHTML = `<span class="status-badge badge-warning">⏳ Evaluations Pending</span>`;
+    } else if (hasFailedAny) {
+      pill.innerHTML = `<span class="status-badge badge-fail">❌ Remedial Required</span>`;
+    } else {
+      pill.innerHTML = `<span class="status-badge badge-distinction">✅ Active Pass Status</span>`;
+    }
+
+    // Populate Reval Dropdown
+    const revalSelect = document.getElementById('revalCourseSelect');
+    revalSelect.innerHTML = `<option value="">-- Choose graded course --</option>` + 
+      graded.map(r => `<option value="${r.subject}">${r.subject} (Score: ${r.marks}/100)</option>`).join('');
+
+    // Render Tables
+    renderOverviewTable(results);
+    renderDetailedTable(results);
+    renderChart(results);
+  }
+
+  function renderOverviewTable(results) {
+    const tbody = document.getElementById('overviewTableBody');
+    if (results.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state-view"><div class="empty-state-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h4>No courses enrolled</h4><p>Courses will appear here once assigned by the department.</p></div></td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = results.map((r, i) => {
+      const isGraded = r.marks !== null && r.marks !== undefined;
+      const score = isGraded ? r.marks : '—';
+      const grade = marksGrade(r.marks);
+      const badgeCls = marksBadgeClass(r.marks);
+      const icon = subjectIcon(i);
+      const scorePct = isGraded ? r.marks : 0;
+      const barColor = marksColor(r.marks);
+
+      const statusTag = !isGraded 
+        ? `<span class="status-badge badge-neutral">Awaiting Grade</span>` 
+        : r.marks >= 33 
+          ? `<span class="status-badge badge-distinction">Passed</span>` 
+          : `<span class="status-badge badge-fail">Unsuccessful</span>`;
+
+      return `
+        <tr>
+          <td>
+            <div class="subject-cell-wrap">
+              <div class="subject-icon-box">${icon}</div>
+              <div>
+                <div class="subject-info-title">${r.subject}</div>
+                <div class="subject-info-sub">Subject Code: CS-60${i + 1}</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span style="font-weight:600;color:var(--text-primary);">${r.teacherName}</span>
+            <div style="font-size:0.75rem;color:var(--text-muted);">Course Instructor</div>
+          </td>
+          <td class="font-mono">100</td>
+          <td>
+            <div style="display:flex;align-items:baseline;gap:4px;">
+              <span class="fw-800 font-mono" style="font-size:1.15rem;color:${barColor};">${score}</span>
+              ${isGraded ? '<span style="font-size:0.75rem;color:var(--text-muted);">/100</span>' : ''}
+            </div>
+            ${isGraded ? `<div class="table-score-bar-wrap"><div class="table-score-bar-fill" style="width:${scorePct}%;background-color:${barColor};"></div></div>` : ''}
+          </td>
+          <td>
+            <span class="status-badge ${badgeCls}">${grade}</span>
+          </td>
+          <td>${statusTag}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function renderDetailedTable(results) {
+    const tbody = document.getElementById('detailedTableBody');
+    if (results.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:30px;">No course records available.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = results.map((r, i) => {
+      const isGraded = r.marks !== null && r.marks !== undefined;
+      const grade = marksGrade(r.marks);
+      const gp = marksGradePoint(r.marks);
+      const badgeCls = marksBadgeClass(r.marks);
+
+      return `
+        <tr>
+          <td class="font-mono text-muted">${i + 1}</td>
+          <td>
+            <div class="fw-700">${r.subject}</div>
+            <div style="font-size:0.76rem;color:var(--text-muted);">Term: Spring 2026 • Code: CS-60${i+1}</div>
+          </td>
+          <td>${r.teacherName}</td>
+          <td class="font-mono">4.0</td>
+          <td>
+            <span class="font-mono fw-700" style="color:${marksColor(r.marks)};">${isGraded ? r.marks : '—'}</span>
+            ${isGraded ? '<span style="color:var(--text-muted);font-size:0.78rem;"> / 100</span>' : ''}
+          </td>
+          <td class="font-mono">${gp !== null ? gp.toFixed(1) : '—'}</td>
+          <td><span class="status-badge ${badgeCls}">${grade}</span></td>
+          <td>
+            ${!isGraded 
+              ? `<span class="status-badge badge-neutral">In Evaluation</span>` 
+              : r.marks >= 33 
+                ? `<span class="status-badge badge-distinction">Verified Pass</span>` 
+                : `<span class="status-badge badge-fail">Review Required</span>`
+            }
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // ── Chart.js Visualization ──────────────────────────────────
+  function renderChart(results) {
+    const ctx = document.getElementById('studentMarksChart');
+    if (!ctx) return;
+
+    if (performanceChart) {
+      performanceChart.destroy();
+    }
+
+    const labels = results.map(r => r.subject.length > 18 ? r.subject.substring(0, 16) + '...' : r.subject);
+    const marksData = results.map(r => (r.marks !== null && r.marks !== undefined) ? r.marks : 0);
+    const distinctionThreshold = results.map(() => 85);
+    const passThreshold = results.map(() => 33);
+
+    performanceChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Your Scored Marks',
+            data: marksData,
+            backgroundColor: 'rgba(52, 211, 153, 0.75)',
+            borderColor: '#34D399',
+            borderWidth: 1.5,
+            borderRadius: 6,
+            maxBarThickness: 38
+          },
+          {
+            type: 'line',
+            label: 'Distinction Line (85%)',
+            data: distinctionThreshold,
+            borderColor: 'rgba(251, 191, 36, 0.85)',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: false
+          },
+          {
+            type: 'line',
+            label: 'Pass Threshold (33%)',
+            data: passThreshold,
+            borderColor: 'rgba(244, 63, 94, 0.7)',
+            borderWidth: 1.5,
+            borderDash: [3, 3],
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              color: '#94A3B8',
+              font: { family: 'Inter', size: 11, weight: '500' },
+              boxWidth: 12,
+              padding: 14
+            }
+          },
+          tooltip: {
+            backgroundColor: '#161F30',
+            titleColor: '#F8FAFC',
+            bodyColor: '#34D399',
+            borderColor: 'rgba(255, 255, 255, 0.12)',
+            borderWidth: 1,
+            padding: 12,
+            cornerRadius: 8,
+            titleFont: { family: 'Inter', weight: '600' },
+            bodyFont: { family: 'JetBrains Mono', weight: '600' }
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { color: '#64748B', font: { family: 'Inter', size: 11 } }
+          },
+          y: {
+            min: 0,
+            max: 100,
+            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+            ticks: { color: '#64748B', stepSize: 20, font: { family: 'JetBrains Mono', size: 10 } }
+          }
+        }
+      }
+    });
+  }
+
+  // ── Navigation Tabs ──────────────────────────────────────────
+  function switchTab(tabKey, btn) {
+    closeMobileSidebar();
+    document.querySelectorAll('.tab-content-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+
+    const targetId = 'panel' + tabKey.charAt(0).toUpperCase() + tabKey.slice(1);
+    const panel = document.getElementById(targetId);
+    if (panel) panel.classList.add('active');
+    if (btn) btn.classList.add('active');
+
+    const titles = {
+      overview: 'Overview & Analytics',
+      results: 'Subject Examination Results',
+      profile: 'Student Academic Profile'
+    };
+    document.getElementById('breadcrumbSection').textContent = titles[tabKey] || tabKey;
+  }
+
+  // ── Printable Transcript Modal ───────────────────────────────
+  function openTranscriptModal() {
+    const sheet = document.getElementById('printableSheet');
+    document.getElementById('tsName').textContent = student.name;
+    document.getElementById('tsRoll').textContent = student.rollNumber;
+    document.getElementById('printDateStamp').textContent = 'Date: ' + new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+
+    const graded = currentResults.filter(r => r.marks !== null && r.marks !== undefined);
+    const scores = graded.map(r => Number(r.marks));
+    const avgScore = scores.length ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1) : '—';
+    const cgpa = calculateCGPA(scores, 4.0) || '—';
+    const classification = academicClassification(avgScore);
+    const hasFailedAny = scores.some(s => s < 33);
+
+    document.getElementById('tsCGPA').textContent = cgpa;
+    document.getElementById('tsPercentage').textContent = avgScore !== '—' ? avgScore + '%' : '—';
+    document.getElementById('tsResult').textContent = hasFailedAny ? 'FAIL / RE-EXAM' : 'PASS';
+    document.getElementById('tsStanding').textContent = classification;
+
+    document.getElementById('tsTableBody').innerHTML = currentResults.map(r => {
+      const isGraded = r.marks !== null && r.marks !== undefined;
+      const grade = marksGrade(r.marks);
+      return `
+        <tr>
+          <td><strong>${r.subject}</strong></td>
+          <td>${r.teacherName}</td>
+          <td>100</td>
+          <td>${isGraded ? r.marks : 'Awaited'}</td>
+          <td>${grade}</td>
+          <td>${!isGraded ? 'Pending' : r.marks >= 33 ? 'Passed' : 'Failed'}</td>
+        </tr>
+      `;
+    }).join('');
+
+    document.getElementById('transcriptModal').classList.add('modal-visible');
+  }
+
+  function closeTranscriptModal() {
+    document.getElementById('transcriptModal').classList.remove('modal-visible');
+  }
+
+  async function downloadMarksheetPDF() {
+    const sheet = document.getElementById('printableSheet');
+    if (!sheet) return;
+
+    const btn = document.getElementById('btnDownloadPDF');
+    const originalHtml = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke-width="3" stroke-dasharray="32" stroke-linecap="round"/></svg> <span>Generating PDF...</span>`;
+      btn.disabled = true;
+    }
+
+    showToast('Compiling official PDF marksheet...', 'info', 2000);
+
+    const safeName = (student.name || 'Student').replace(/[^a-zA-Z0-9]/g, '_');
+    const rollNo = (student.rollNumber || 'Record').replace(/[^a-zA-Z0-9]/g, '_');
+    const filename = `${safeName}_${rollNo}_Marksheet.pdf`;
+
+    const opt = {
+      margin:       [10, 10, 10, 10],
+      filename:     filename,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true, letterRendering: true, backgroundColor: '#FFFFFF' },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    try {
+      if (typeof html2pdf !== 'undefined') {
+        await html2pdf().set(opt).from(sheet).save();
+        showToast('Marksheet PDF downloaded successfully! 📄', 'success');
+      } else {
+        window.print();
+      }
+    } catch (err) {
+      console.error('PDF generation error:', err);
+      showToast('Opening print dialog as fallback...', 'warning');
+      window.print();
+    } finally {
+      if (btn) {
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+      }
+    }
+  }
+
+  function printTranscript() {
+    window.print();
+  }
+
+  // ── Re-evaluation Modal ──────────────────────────────────────
+  function openRevalModal() {
+    document.getElementById('revalModal').classList.add('modal-visible');
+  }
+
+  function closeRevalModal() {
+    document.getElementById('revalModal').classList.remove('modal-visible');
+  }
+
+  function submitRevalRequest() {
+    const course = document.getElementById('revalCourseSelect').value;
+    const reason = document.getElementById('revalReason').value.trim();
+
+    if (!course) {
+      showToast('Please select a course to review.', 'error');
+      return;
+    }
+    if (!reason) {
+      showToast('Please provide a reason or note for review.', 'error');
+      return;
+    }
+
+    closeRevalModal();
+    showToast(`Re-evaluation request for ${course} submitted to faculty!`, 'success');
+    document.getElementById('revalReason').value = '';
+  }
+
+  function openGradingPolicyModal() {
+    document.getElementById('gradingPolicyModal').classList.add('modal-visible');
+  }
+
+  function closeGradingPolicyModal() {
+    document.getElementById('gradingPolicyModal').classList.remove('modal-visible');
+  }
+
+  function confirmLogout() {
+    showConfirmDialog(
+      'Confirm Portal Logout',
+      'Are you sure you wish to end your student session? Any unsaved form work will be discarded.',
+      () => doLogout(),
+      'Log Out',
+      'danger'
+    );
+  }
+
+  // Initialize
+  loadStudentData();
+</script>
+
+</body>
+</html>
