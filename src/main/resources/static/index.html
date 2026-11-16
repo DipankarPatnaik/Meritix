@@ -6,7 +6,7 @@
   <title>MERITIX — Next-Generation Academic Assessment & Performance Portal</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body style="background: radial-gradient(circle at 50% 10%, #162032 0%, #0D131F 60%, #090D14 100%);">
+<body style="background-color: var(--bg-canvas);">
 
   <!-- Top Navigation -->
   <header class="landing-navbar">
@@ -18,18 +18,18 @@
         </svg>
       </div>
       <div class="brand-text">
-        <span class="brand-title">MERITIX</span>
+        <span class="brand-title">merit/ix</span>
         <span class="brand-subtitle">Academic Intelligence Platform</span>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:16px;">
+    <div style="display:flex;align-items:center;gap:14px;">
       <div class="term-pill">
         <span class="term-pill-dot"></span>
         <span>Spring 2026 Session</span>
       </div>
-      <a href="pages/student-login.html" class="btn btn-primary btn-sm">
+      <a href="pages/student-login.html" class="tiny-button primary">
         <span>Enter Portal</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </div>
   </header>
@@ -37,10 +37,10 @@
   <!-- Hero Section -->
   <section class="landing-hero">
     <div class="landing-hero-badge">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"/></svg>
       <span>Next-Generation Academic Assessment & Performance Portal</span>
     </div>
-    <h1>Academic Assessment & <br/><span class="gradient-mint">Performance Intelligence</span></h1>
+    <h1>Academic Assessment & <br/><span class="gradient-mint">Performance Intelligence.</span></h1>
     <p>A unified academic management workspace connecting students and faculty. Experience real-time GPA tracking, subject-level performance radars, and streamlined marks evaluation.</p>
   </section>
 
@@ -91,17 +91,17 @@
 
   <!-- Live Demonstration Bar -->
   <div style="max-width:860px;margin:0 auto 60px;padding:0 24px;">
-    <div class="demo-accounts-box">
-      <div class="demo-accounts-title">⚡ Quick Demonstration Access (Pre-Configured Credentials)</div>
-      <div class="demo-btns-row">
-        <button class="btn-demo-pill" onclick="directLogin('student', 'alex.w', 'password123')">
-          🎒 Student Demo (Alexander Wright • High Honors)
+    <div style="background-color:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:10px;padding:16px 20px;">
+      <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:12px;">⚡ Quick Demonstration Access (Pre-Configured Credentials)</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:8px;">
+        <button class="btn btn-secondary btn-sm" onclick="directLogin('student', 'alex.w', 'password123')" style="justify-content:flex-start;">
+          <span>🎒 Alexander Wright (High Honors)</span>
         </button>
-        <button class="btn-demo-pill" onclick="directLogin('student', 'emily.c', 'password123')">
-          🎒 Student Demo (Emily Chen • Dean's List)
+        <button class="btn btn-secondary btn-sm" onclick="directLogin('student', 'emily.c', 'password123')" style="justify-content:flex-start;">
+          <span>🎒 Emily Chen (Dean's List)</span>
         </button>
-        <button class="btn-demo-pill" onclick="directLogin('teacher', 'marcus.v', 'password123')">
-          👩‍🏫 Faculty Demo (Dr. Marcus Vance • Databases)
+        <button class="btn btn-secondary btn-sm" onclick="directLogin('teacher', 'marcus.v', 'password123')" style="justify-content:flex-start;">
+          <span>👩‍🏫 Dr. Marcus Vance (Databases)</span>
         </button>
       </div>
     </div>
@@ -121,9 +121,8 @@
         showToast(`Signed in! Redirecting to ${role} dashboard...`, 'success');
         setTimeout(() => {
           window.location.href = role === 'teacher' ? 'pages/teacher-dashboard.html' : 'pages/student-dashboard.html';
-        }, 600);
+        }, 500);
       } else {
-        // If data isn't seeded yet, navigate to login page
         window.location.href = role === 'teacher' ? 'pages/teacher-login.html' : 'pages/student-login.html';
       }
     }

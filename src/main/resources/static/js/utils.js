@@ -80,13 +80,13 @@ function marksGradePoint(marks) {
 }
 
 function marksColor(marks) {
-  if (marks === null || marks === undefined || marks === '') return '#64748B'; // muted
+  if (marks === null || marks === undefined || marks === '') return '#a0b3b6'; // muted
   const m = Number(marks);
-  if (m >= 80) return '#34D399'; // Mint Green
-  if (m >= 60) return '#2DD4BF'; // Teal
-  if (m >= 50) return '#FBBF24'; // Warm Amber
-  if (m >= 33) return '#FB923C'; // Warm Orange
-  return '#F43F5E';              // Rose / Red
+  if (m >= 80) return '#b5f3cd'; // Pale Mint
+  if (m >= 60) return '#a7e8e1'; // Soft Teal
+  if (m >= 50) return '#f0c58a'; // Antique Gold
+  if (m >= 33) return '#e3b078'; // Warm Ochre
+  return '#fca5a5';              // Soft Rose
 }
 
 function marksBadgeClass(marks) {

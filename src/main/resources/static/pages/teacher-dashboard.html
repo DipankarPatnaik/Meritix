@@ -16,7 +16,7 @@
   <aside class="app-sidebar">
     <div class="sidebar-header">
       <a href="../index.html" class="sidebar-brand-link">
-        <div class="brand-emblem" style="background: linear-gradient(135deg, #6366F1, #4338CA);box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);">
+        <div class="brand-emblem teacher-avatar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
             <circle cx="9" cy="7" r="4"/>
@@ -25,8 +25,8 @@
           </svg>
         </div>
         <div class="brand-text">
-          <span class="brand-title">MERITIX</span>
-          <span class="brand-subtitle" style="color:var(--accent-indigo-light)">Faculty Console</span>
+          <span class="brand-title">merit/ix</span>
+          <span class="brand-subtitle" style="color:var(--accent-blue)">Faculty Console</span>
         </div>
       </a>
       <button class="sidebar-close-btn" onclick="closeMobileSidebar()" aria-label="Close sidebar">
@@ -105,7 +105,7 @@
       </div>
       <div class="topbar-right">
         <div class="term-pill">
-          <span class="term-pill-dot" style="background-color:var(--accent-indigo);box-shadow:0 0 8px var(--accent-indigo);"></span>
+          <span class="term-pill-dot" style="background-color:var(--accent-blue);"></span>
           <span id="topbarSubjectPill">Course Assignment</span>
         </div>
         <button class="btn btn-outline-mint btn-sm" onclick="exportCSV()">
@@ -743,18 +743,18 @@
           label: 'Student Count',
           data: [distCount, firstCount, secondCount, passCount, failCount],
           backgroundColor: [
-            'rgba(52, 211, 153, 0.75)',
-            'rgba(20, 184, 166, 0.75)',
-            'rgba(251, 191, 36, 0.75)',
-            'rgba(251, 146, 60, 0.75)',
-            'rgba(244, 63, 94, 0.75)'
+            'rgba(181, 243, 205, 0.85)',
+            'rgba(167, 232, 225, 0.85)',
+            'rgba(240, 197, 138, 0.85)',
+            'rgba(227, 176, 120, 0.85)',
+            'rgba(252, 165, 165, 0.85)'
           ],
           borderColor: [
-            '#34D399',
-            '#2DD4BF',
-            '#FBBF24',
-            '#FB923C',
-            '#F43F5E'
+            '#b5f3cd',
+            '#a7e8e1',
+            '#f0c58a',
+            '#e3b078',
+            '#fca5a5'
           ],
           borderWidth: 1.5,
           borderRadius: 6
@@ -766,12 +766,12 @@
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: '#161F30',
-            titleColor: '#F8FAFC',
-            bodyColor: '#34D399',
-            borderColor: 'rgba(255, 255, 255, 0.12)',
+            backgroundColor: '#1e3035',
+            titleColor: '#edf3ec',
+            bodyColor: '#b5f3cd',
+            borderColor: '#2b3c40',
             borderWidth: 1,
-            cornerRadius: 8,
+            cornerRadius: 7,
             titleFont: { family: 'Inter', weight: '600' },
             bodyFont: { family: 'JetBrains Mono', weight: '600' }
           }
@@ -779,12 +779,12 @@
         scales: {
           x: {
             grid: { display: false },
-            ticks: { color: '#64748B', font: { family: 'Inter', size: 10 } }
+            ticks: { color: '#a0b3b6', font: { family: 'Inter', size: 10 } }
           },
           y: {
             beginAtZero: true,
-            ticks: { stepSize: 1, color: '#64748B', font: { family: 'JetBrains Mono', size: 10 } },
-            grid: { color: 'rgba(255, 255, 255, 0.05)' }
+            ticks: { stepSize: 1, color: '#a0b3b6', font: { family: 'JetBrains Mono', size: 10 } },
+            grid: { color: '#24353d' }
           }
         }
       }
@@ -799,8 +799,8 @@
         labels: ['Evaluated & Recorded', 'Pending Evaluation'],
         datasets: [{
           data: [evaluated, pending > 0 ? pending : 0],
-          backgroundColor: ['#10B981', '#1C273C'],
-          borderColor: ['#111724', '#111724'],
+          backgroundColor: ['#b5f3cd', '#1e3035'],
+          borderColor: ['#17252a', '#17252a'],
           borderWidth: 2
         }]
       },
@@ -811,41 +811,22 @@
           legend: {
             position: 'bottom',
             labels: {
-              color: '#94A3B8',
+              color: '#a0b3b6',
               font: { family: 'Inter', size: 11, weight: '500' },
               boxWidth: 12,
               padding: 14
             }
           },
           tooltip: {
-            backgroundColor: '#161F30',
-            titleColor: '#F8FAFC',
-            bodyColor: '#34D399',
-            borderColor: 'rgba(255, 255, 255, 0.12)',
+            backgroundColor: '#1e3035',
+            titleColor: '#edf3ec',
+            bodyColor: '#b5f3cd',
+            borderColor: '#2b3c40',
             borderWidth: 1,
-            cornerRadius: 8
+            cornerRadius: 7
           }
         },
         cutout: '72%'
-      }
-    });
-          borderColor: ['#34D399', 'rgba(45, 95, 107, 0.3)'],
-          borderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '72%',
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              color: '#94A3B8',
-              font: { family: 'Plus Jakarta Sans', size: 11, weight: '600' }
-            }
-          }
-        }
       }
     });
   }

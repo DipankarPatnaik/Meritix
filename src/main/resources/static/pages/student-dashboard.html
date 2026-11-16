@@ -25,7 +25,7 @@
           </svg>
         </div>
         <div class="brand-text">
-          <span class="brand-title">MERITIX</span>
+          <span class="brand-title">merit/ix</span>
           <span class="brand-subtitle">Student Portal</span>
         </div>
       </a>
@@ -780,8 +780,8 @@
           {
             label: 'Your Scored Marks',
             data: marksData,
-            backgroundColor: 'rgba(52, 211, 153, 0.75)',
-            borderColor: '#34D399',
+            backgroundColor: 'rgba(181, 243, 205, 0.85)',
+            borderColor: '#b5f3cd',
             borderWidth: 1.5,
             borderRadius: 6,
             maxBarThickness: 38
@@ -790,7 +790,7 @@
             type: 'line',
             label: 'Distinction Line (85%)',
             data: distinctionThreshold,
-            borderColor: 'rgba(251, 191, 36, 0.85)',
+            borderColor: '#f0c58a',
             borderWidth: 2,
             borderDash: [5, 5],
             pointRadius: 0,
@@ -800,7 +800,7 @@
             type: 'line',
             label: 'Pass Threshold (33%)',
             data: passThreshold,
-            borderColor: 'rgba(244, 63, 94, 0.7)',
+            borderColor: '#fca5a5',
             borderWidth: 1.5,
             borderDash: [3, 3],
             pointRadius: 0,
@@ -815,20 +815,20 @@
           legend: {
             position: 'top',
             labels: {
-              color: '#94A3B8',
+              color: '#a0b3b6',
               font: { family: 'Inter', size: 11, weight: '500' },
               boxWidth: 12,
               padding: 14
             }
           },
           tooltip: {
-            backgroundColor: '#161F30',
-            titleColor: '#F8FAFC',
-            bodyColor: '#34D399',
-            borderColor: 'rgba(255, 255, 255, 0.12)',
+            backgroundColor: '#1e3035',
+            titleColor: '#edf3ec',
+            bodyColor: '#b5f3cd',
+            borderColor: '#2b3c40',
             borderWidth: 1,
             padding: 12,
-            cornerRadius: 8,
+            cornerRadius: 7,
             titleFont: { family: 'Inter', weight: '600' },
             bodyFont: { family: 'JetBrains Mono', weight: '600' }
           }
@@ -836,13 +836,13 @@
         scales: {
           x: {
             grid: { display: false },
-            ticks: { color: '#64748B', font: { family: 'Inter', size: 11 } }
+            ticks: { color: '#a0b3b6', font: { family: 'Inter', size: 11 } }
           },
           y: {
             min: 0,
             max: 100,
-            grid: { color: 'rgba(255, 255, 255, 0.05)' },
-            ticks: { color: '#64748B', stepSize: 20, font: { family: 'JetBrains Mono', size: 10 } }
+            grid: { color: '#24353d' },
+            ticks: { color: '#a0b3b6', stepSize: 20, font: { family: 'JetBrains Mono', size: 10 } }
           }
         }
       }
